@@ -92,7 +92,9 @@ module Ansi
               yield data
             when :display
               case code = data
-              when 0,39,49        ; yield reset_styles if @stack.any? # NOTE: 39/49 is reset for fg/bg color only
+              #when 0,39,49        ; yield reset_styles if @stack.any? # NOTE: 39/49 is reset for fg/bg color only
+              #NOTE - it should check the for the beginning of the string not to reset styles
+              when 0        ; yield reset_styles if @stack.any?
               when 1        ; yield push_tag("b") # bright
               when 2        ; #dim
               when 3, 4     ; yield push_tag("u")
